@@ -56,18 +56,29 @@ Ayrıca kullanıcı, oluşturulan müziği görüntüleyebilir, silebilir ve dah
 
 
 
-![Ekran görüntüsü 2023-09-10 132258](https://github.com/Cntrk01/RapGenerator/assets/98031686/fd8e92f4-5a5e-4e04-a966-b83e5478655b)
+
+![Ekran görüntüsü 2023-09-10 132350](https://github.com/Cntrk01/RapGeneratorApp/assets/98031686/6c592b2a-0e12-4baa-85cc-8c636eb4be0b)
 
 
 
-![Ekran görüntüsü 2023-09-10 132530](https://github.com/Cntrk01/RapGenerator/assets/98031686/c5d8eb90-3eea-4884-bd9a-3fdbdeecd8df)
+
+
+![Ekran görüntüsü 2023-09-10 132338](https://github.com/Cntrk01/RapGeneratorApp/assets/98031686/759ea36d-1cf3-476f-aeb3-58839a77ccbd)
 
 
 
-![Ekran görüntüsü 2023-09-10 132350](https://github.com/Cntrk01/RapGenerator/assets/98031686/15ae2e54-c056-406b-8ad2-d2711119f3b0)
 
 
 
-![Ekran görüntüsü 2023-09-10 132338](https://github.com/Cntrk01/RapGenerator/assets/98031686/12530595-fb77-457c-a896-a877590f1a63)
+![Ekran görüntüsü 2023-09-10 132258](https://github.com/Cntrk01/RapGeneratorApp/assets/98031686/d92aefdf-9a29-4ea0-baed-5118c1f588ad)
+
+
+
+
+
+
+![Ekran görüntüsü 2023-09-10 132530](https://github.com/Cntrk01/RapGeneratorApp/assets/98031686/5e89b505-43d5-46e1-b35a-79e3bc096bb3)
+
+
 
 
