@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/onBoardFragment1">
+    <fragment
+        android:id="@+id/onBoardFragment1"
+        android:name="com.okation.aivideocreator.ui.splashscreen.OnBoardFragment1"
+        android:label="fragment_on_board1"
+        tools:layout="@layout/fragment_on_board1" >
+        <action
+            android:id="@+id/action_onBoardFragment1_to_onBoardFragment2"
+            app:destination="@id/onBoardFragment2"
+            app:popUpTo="@id/navigation"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_onBoardFragment1_to_homeFragment2"
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/navigation"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_onBoardFragment1_to_premiumFragment"
+            app:destination="@id/premiumFragment"
+            app:popUpTo="@id/navigation"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/onBoardFragment2"
+        android:name="com.okation.aivideocreator.ui.splashscreen.OnBoardFragment2"
+        android:label="fragment_on_board2"
+        tools:layout="@layout/fragment_on_board2" >
+        <action
+            android:id="@+id/action_onBoardFragment2_to_onBoardFragment3"
+            app:destination="@id/onBoardFragment3"
+            app:popUpTo="@id/navigation"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/onBoardFragment3"
+        android:name="com.okation.aivideocreator.ui.splashscreen.OnBoardFragment3"
+        android:label="fragment_on_board3"
+        tools:layout="@layout/fragment_on_board3" >
+        <action
+            android:id="@+id/action_onBoardFragment3_to_onBoardFragment4"
+            app:destination="@id/onBoardFragment4"
+            app:popUpTo="@id/navigation"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/onBoardFragment4"
+        android:name="com.okation.aivideocreator.ui.splashscreen.OnBoardFragment4"
+        android:label="fragment_on_board4"
+        tools:layout="@layout/fragment_on_board4" >
+        <action
+            android:id="@+id/action_onBoardFragment4_to_homeFragment2"
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/navigation"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_onBoardFragment4_to_premiumFragment"
+            app:destination="@id/premiumFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.okation.aivideocreator.ui.home.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment"
+            app:popUpTo="@id/navigation"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_homeFragment_to_promptFragment"
+            app:destination="@id/promptFragment"
+            app:popUpTo="@id/navigation"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_homeFragment_to_premiumFragment"
+            app:destination="@id/premiumFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_selectBeatsFragment"
+            app:destination="@id/selectBeatsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_songFragment"
+            app:destination="@id/songFragment"
+            app:popUpTo="@id/navigation"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.okation.aivideocreator.ui.settings.SettingsFragment"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" >
+        <action
+            android:id="@+id/action_settingsFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_settingsFragment_to_premiumFragment"
+            app:destination="@id/premiumFragment"
+            app:popUpTo="@id/navigation"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/premiumFragment"
+        android:name="com.okation.aivideocreator.ui.settings.premium.PremiumFragment"
+        android:label="fragment_premium"
+        tools:layout="@layout/fragment_premium" >
+        <action
+            android:id="@+id/action_premiumFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment"
+            app:popUpTo="@id/navigation"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_premiumFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/navigation"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/promptFragment"
+        android:name="com.okation.aivideocreator.ui.prompt.PromptFragment"
+        android:label="PromptFragment" >
+        <action
+            android:id="@+id/action_promptFragment_to_generatingLyricFragment"
+            app:destination="@id/generatingLyricFragment"
+            app:popUpTo="@id/navigation"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_promptFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/generatingLyricFragment"
+        android:name="com.okation.aivideocreator.ui.prompt.lyric.GeneratingLyricFragment"
+        android:label="fragment_generating_lyric"
+        tools:layout="@layout/fragment_generating_lyric" >
+        <action
+            android:id="@+id/action_generatingLyricFragment_to_promptFragment"
+            app:destination="@id/promptFragment" />
+        <action
+            android:id="@+id/action_generatingLyricFragment_to_finishLyricFragment"
+            app:destination="@id/finishLyricFragment"
+            app:popUpTo="@id/navigation"
+            app:popUpToInclusive="true" />
+        <argument
+            android:name="getTextName"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/finishLyricFragment"
+        android:name="com.okation.aivideocreator.ui.prompt.lyric.FinishLyricFragment"
+        android:label="fragment_finish_lyric"
+        tools:layout="@layout/fragment_finish_lyric" >
+        <action
+            android:id="@+id/action_finishLyricFragment_to_editLyricFragment"
+            app:destination="@id/editLyricFragment"
+            app:popUpTo="@id/navigation"
+            app:popUpToInclusive="true" />
+        <argument
+            android:name="lyricText"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_finishLyricFragment_to_promptFragment"
+            app:destination="@id/promptFragment" />
+        <action
+            android:id="@+id/action_finishLyricFragment_to_selectBeatsFragment"
+            app:destination="@id/selectBeatsFragment"
+            app:popUpTo="@id/navigation"
+            app:popUpToInclusive="true" />
+        <argument
+            android:name="lyricTitle"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/editLyricFragment"
+        android:name="com.okation.aivideocreator.ui.prompt.lyric.EditLyricFragment"
+        android:label="fragment_edit_lyric"
+        tools:layout="@layout/fragment_edit_lyric" >
+        <action
+            android:id="@+id/action_editLyricFragment_to_finishLyricFragment"
+            app:destination="@id/finishLyricFragment" />
+        <argument
+            android:name="text"
+            app:argType="string" />
+        <argument android:name="title" />
+    </fragment>
+    <fragment
+        android:id="@+id/selectBeatsFragment"
+        android:name="com.okation.aivideocreator.ui.beats.SelectBeatsFragment"
+        android:label="fragment_select_beats"
+        tools:layout="@layout/fragment_select_beats" >
+        <action
+            android:id="@+id/action_selectBeatsFragment_to_finishLyricFragment"
+            app:destination="@id/finishLyricFragment" />
+        <action
+            android:id="@+id/action_selectBeatsFragment_to_rapperFragment"
+            app:destination="@id/rapperFragment"
+            app:popUpTo="@id/navigation"
+            app:popUpToInclusive="true" />
+        <argument
+            android:name="lyricText"
+            app:argType="string" />
+        <argument
+            android:name="lyricTitle"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/rapperFragment"
+        android:name="com.okation.aivideocreator.ui.rapper.RapperFragment"
+        android:label="fragment_rapper"
+        tools:layout="@layout/fragment_rapper" >
+        <action
+            android:id="@+id/action_rapperFragment_to_selectBeatsFragment"
+            app:destination="@id/selectBeatsFragment" />
+        <argument
+            android:name="beatsUid"
+            app:argType="string" />
+        <argument
+            android:name="lyricText"
+            app:argType="string" />
+        <argument android:name="lyricTitle"
+            app:argType="string" />
+        <argument
+            android:name="bpm"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_rapperFragment_to_generatingFragment"
+            app:destination="@id/generatingFragment"
+            app:popUpTo="@id/navigation"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/generatingFragment"
+        android:name="com.okation.aivideocreator.ui.generating.GeneratingFragment"
+        android:label="fragment_generating"
+        tools:layout="@layout/fragment_generating" >
+        <argument
+            android:name="beatsUid"
+            app:argType="string" />
+        <argument
+            android:name="lyricText"
+            app:argType="string" />
+        <argument
+            android:name="lyricTitle"
+            app:argType="string" />
+        <argument
+            android:name="bpm"
+            app:argType="integer" />
+        <argument
+            android:name="rapperBeats"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_generatingFragment_to_songFragment"
+            app:destination="@id/songFragment"
+            app:popUpTo="@id/navigation"
+            app:popUpToInclusive="true" />
+        <argument
+            android:name="rapperName"
+            app:argType="string" />
+        <argument
+            android:name="rapperPhoto"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/songFragment"
+        android:name="com.okation.aivideocreator.ui.song.SongFragment"
+        android:label="fragment_song"
+        tools:layout="@layout/fragment_song" >
+        <action
+            android:id="@+id/action_songFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:popUpToInclusive="false" />
+        <argument
+            android:name="musicUrl"
+            app:argType="string" />
+        <argument
+            android:name="lyricTitle"
+            app:argType="string" />
+        <argument
+            android:name="rapperName"
+            app:argType="string" />
+        <argument
+            android:name="rapperPhoto"
+            app:argType="integer" />
+        <argument
+            android:name="fragmentValue"
+            app:argType="integer" />
+    </fragment>
+</navigation>

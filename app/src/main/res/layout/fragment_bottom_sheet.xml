@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.home.BottomSheetFragment">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/share"
+            android:background="@color/grey"
+            android:layout_width="match_parent"
+            android:textColor="@color/blue"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/popins_medium"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:text="SHARE"
+            android:textAllCaps="false"
+            />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1sp"
+            android:background="@color/black"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/rename"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/blue"
+            android:background="@color/grey"
+            android:fontFamily="@font/popins_medium"
+            android:gravity="center"
+            android:text="RENAME"
+            android:textAllCaps="false" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1sp"
+            android:background="@color/black"/>
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/delete"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/popins_medium"
+            android:gravity="center"
+            android:text="DELETE"
+            android:textColor="@color/red"
+            android:background="@color/grey"
+            android:textAllCaps="false"
+             />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1sp"
+            android:background="@color/black"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/cancel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/popins_medium"
+            android:gravity="center"
+            android:layout_marginTop="15sp"
+            android:text="CANCEL"
+            android:textColor="@color/blue"
+            android:background="@color/grey"
+            android:textAllCaps="false"
+            />
+    </LinearLayout>
+
+
+</LinearLayout>

@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.song.SongFragment">
+
+
+    <ImageView
+        android:id="@+id/songImage"
+        android:layout_width="match_parent"
+        android:layout_height="450sp"
+        android:src="@drawable/img_song"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/backButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15sp"
+        android:layout_marginTop="15sp"
+        android:src="@drawable/btn_back_white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/songName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+
+        android:gravity="center_horizontal"
+        android:text="King Of The Hustle"
+        android:layout_margin="10sp"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        android:fontFamily="@font/popins_medium"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/songImage" />
+
+    <TextView
+        android:id="@+id/songSinger"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="8dp"
+        android:gravity="center_horizontal"
+        android:text="Rumble Rhymer"
+        android:textColor="@color/black"
+        android:textSize="13sp"
+        android:fontFamily="@font/popins_medium"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/songName" />
+
+    <SeekBar
+        android:id="@+id/horizontalProgressBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:thumbTint="@color/black"
+        android:progressDrawable="@drawable/seekbar_progress"
+        android:max="100"
+        android:progress="0"
+        android:layout_marginRight="20sp"
+        android:layout_marginTop="6sp"
+        android:layout_marginLeft="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/songSinger" />
+
+    <TextView
+        android:id="@+id/passTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="00:00"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="@+id/horizontalProgressBar"
+        app:layout_constraintTop_toBottomOf="@+id/horizontalProgressBar" />
+
+    <TextView
+        android:id="@+id/totalTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="01:25"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="@+id/horizontalProgressBar"
+        app:layout_constraintTop_toBottomOf="@+id/horizontalProgressBar" />
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/shareButton"
+        android:layout_width="match_parent"
+        android:layout_height="45sp"
+        android:layout_marginLeft="55sp"
+        android:layout_marginRight="55sp"
+        android:layout_marginBottom="20sp"
+        android:background="@drawable/premium_bg"
+        android:text="Share"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.687"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pauseSong"
+        app:layout_constraintVertical_bias="0.743" />
+
+
+    <ImageView
+        android:id="@+id/backSong"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="44dp"
+        android:src="@drawable/btn_backsong"
+        app:layout_constraintBottom_toBottomOf="@+id/pauseSong"
+        app:layout_constraintEnd_toStartOf="@+id/pauseSong"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/pauseSong"
+        app:layout_constraintVertical_bias="0.2" />
+
+    <ImageView
+        android:id="@+id/pauseSong"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/btn_pausesong"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/horizontalProgressBar" />
+
+    <ImageView
+        android:id="@+id/forwardSong"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="44dp"
+        android:src="@drawable/btn_forwardsong"
+        app:layout_constraintBottom_toBottomOf="@+id/pauseSong"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/pauseSong"
+        app:layout_constraintTop_toTopOf="@+id/pauseSong"
+        app:layout_constraintVertical_bias="0.2" />
+
+    <ImageView
+        android:id="@+id/playSong"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/btn_playsong"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/pauseSong"
+        app:layout_constraintEnd_toEndOf="@+id/pauseSong"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/pauseSong"
+        app:layout_constraintTop_toBottomOf="@+id/horizontalProgressBar"
+        app:layout_constraintVertical_bias="1.0" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

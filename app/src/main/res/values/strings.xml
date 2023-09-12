@@ -1,0 +1,43 @@
+<resources>
+    <string name="app_name">RapGenerator</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="rap_your_stories_share"><![CDATA[Rap Your Stories & Share]]></string>
+    <string name="example">I used to be down, no cash flow in sight, Hustled every day, just to make things right, Dreaming \'bout the life, the one I never had, Big house, fancy cars, feeling kind of sad, But now I\'m living like a king, pockets always full, Money\'s coming in, nothing to worry \'bout at all, Rolling in the dough, no more counting pennies, I used to be a broke man, but now I\'m living like a wealthy, I put in the work, now I\'m reaping the rewards, Got a mansion on the hill, and a garage full of cars, Champagne popping, every night\'s a celebration, Used to have no money, now I\'m living in elation, But now I\'m living like a king, pockets always. full, Money\'s coming in, nothing to worry \'bout at all, Rolling in the dough, no more counting pennies, I used to be a broke man,</string>
+    <string name="onBoard1Title">Infinite Lyric Possibilities \n Await</string>
+    <string name="onBoard1Description">Generate unique rap verses with \n ease, and let your friends marvel \n at your lyrical creativity.</string>
+    <string name="next">NEXT</string>
+    <string name="onBoard2Title">Choose Your Dream Rap \nRapper</string>
+    <string name="onBoard2Description">Select your favorite rap artist to \nperform your custom lyrics,\n making your friends envious of \nyour star collaboration.</string>
+    <string name="onBoard3Title">Find Your Perfect Beat \nMatch</string>
+    <string name="onBoard3Description">Explore diverse beats to \n complement your lyrics, producing \n catchy tracks that get your friends \ngrooving.</string>
+    <string name="onBoard4Title">Share Your Rap Flair, \nIgnite Social Media</string>
+    <string name="onBoard4Description">Showcase your original rap creations \non social media, captivating friends \nand followers with your undeniable \ntalent.</string>
+    <string name="unlimitedSongs">Unlimited Songs: Unleash Your Rap Potential</string>
+    <string name="enjoyAdFree">Enjoy Ad-Free, Uninterrupted Inspiration</string>
+    <string name="inspireFriends">Inspire friends with your RAP songs</string>
+    <string name="weekly">Weekly</string>
+    <string name="month">Month</string>
+    <string name="year">Year</string>
+    <string name="terms">Terms Of Use</string>
+    <string name="restorePurchase">Restore Purchase</string>
+    <string name="privacyPolicy">Privacy Policy</string>
+    <string name="continueText">Continue</string>
+    <string name="get_premium">GET PREMIUM</string>
+    <string name="termsOf">Terms of Use</string>
+    <string name="contactUs">Contact Us</string>
+    <string name="help">Help</string>
+    <string name="selectBeatString">Select Beat</string>
+    <string name="editLyricString">Edit Lyrics</string>
+    <string name="generatingLyricsString">Generating Lyrics</string>
+    <string name="songTitleString">Song Title</string>
+    <string name="processingString">Processing</string>
+    <string name="leftString">Left</string>
+    <string name="typeYourPrompsHint">Type Your Promps</string>
+    <string name="settingsString">Settings</string>
+    <string name="fun">Fun</string>
+    <string name="happy">Happy</string>
+    <string name="love">Love</string>
+    <string name="sad">Sad</string>
+    <string name="sexy">Sexy</string>
+</resources>
