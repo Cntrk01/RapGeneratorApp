@@ -23,10 +23,8 @@ class PromptFragment : Fragment() {
     private var _binding : FragmentPromptBinding?=null
     private val binding get() = _binding!!
     private lateinit var adapter : PromptViewPager
-    var ids=0
-
+    private var ids=0
     private val viewModel : PromptViewmodel by activityViewModels()
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,21 +36,16 @@ class PromptFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding= FragmentPromptBinding.inflate(inflater,container,false)
-
         return binding.root
     }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.textPrompt.text.clear()
-
         observeText()
         viewPager()
         setClickButton()
         checkContinueButton()
-
     }
-
     private fun checkContinueButton(){
         binding.continueButton.setOnClickListener {
             val promptText=binding.textPrompt.text.toString()
@@ -61,16 +54,13 @@ class PromptFragment : Fragment() {
             else{
                 val action=PromptFragmentDirections.actionPromptFragmentToGeneratingLyricFragment(promptText)
                 findNavController().navigate(action)
-
             }
         }
         binding.backButton.setOnClickListener {
             val action=PromptFragmentDirections.actionPromptFragmentToHomeFragment()
             findNavController().navigate(action)
         }
-
     }
-
     private fun viewPager(){
         val pageItems = listOf(
             FunFragment(),
@@ -84,9 +74,7 @@ class PromptFragment : Fragment() {
             viewpager2.adapter = adapter
             viewpager2.isUserInputEnabled = false;
         }
-
     }
-
     private fun observeText(){
         viewModel.getText.observe(viewLifecycleOwner){
             it?.let {
@@ -94,9 +82,7 @@ class PromptFragment : Fragment() {
                binding.textPrompt.setText(it)
             }
         }
-
     }
-
     private fun setClickButton(){
         binding.apply {
             viewpager2.setCurrentItem(0, true)
@@ -129,7 +115,6 @@ class PromptFragment : Fragment() {
                 viewpager2.setCurrentItem(4, true)
             }
         }
-
     }
 
     private fun setBgColor(ids: Int) {
@@ -142,33 +127,23 @@ class PromptFragment : Fragment() {
                 4 -> setSelectedStyle(sadCard)
                 5 -> setSelectedStyle(sexyCard)
             }
-
         }
-
-
     }
-
     private fun resetColors() {
         val blackColor = ContextCompat.getColor(requireContext(), R.color.black)
-
         binding.apply {
             funCard.setBackgroundResource(R.color.white)
             fun1.setTextColor(blackColor)
-
             happyCard.setBackgroundResource(R.color.white)
             happy.setTextColor(blackColor)
-
             loveCard.setBackgroundResource(R.color.white)
             love.setTextColor(blackColor)
-
             sadCard.setBackgroundResource(R.color.white)
             sad.setTextColor(blackColor)
-
             sexyCard.setBackgroundResource(R.color.white)
             sexy.setTextColor(blackColor)
         }
     }
-
     private fun setSelectedStyle(view: View) {
         val whiteColor = ContextCompat.getColor(requireContext(), R.color.white)
         val premiumBgDrawable = ContextCompat.getDrawable(requireContext(), R.drawable.premium_bg)
@@ -194,12 +169,10 @@ class PromptFragment : Fragment() {
             }
         }
     }
-
     override fun onResume() {
         super.onResume()
         viewModel.getText.value=""
     }
-
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

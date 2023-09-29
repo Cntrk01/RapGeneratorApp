@@ -30,48 +30,42 @@ class SettingsFragment : Fragment() {
         _binding= FragmentSettingsBinding.inflate(inflater,container,false)
         return binding.root
     }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initNavigation()
         checkPremium()
         directionWebSite()
     }
-
     private fun checkPremium(){
         val sharedPrefs = requireContext().getSharedPreferences("my_prefs", Context.MODE_PRIVATE)
         val isPaymentSuccessful = sharedPrefs.getBoolean("is_payment_successful", false)
-
         if (isPaymentSuccessful){
             binding.getPremium.visibility=View.GONE
         }
     }
-
     private fun initNavigation(){
         binding.backButton.setOnClickListener {
             val action=SettingsFragmentDirections.actionSettingsFragmentToHomeFragment()
             findNavController().navigate(action)
         }
     }
-
-
     private fun directionWebSite(){
         with(binding){
             termofUs.setOnClickListener {
-                val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://en.wikipedia.org/wiki/Term_of_office"))
-                startActivity(intent)
+                val action = Intent(Intent.ACTION_VIEW, Uri.parse("https://en.wikipedia.org/wiki/Term_of_office"))
+                startActivity(action)
             }
             contacUs.setOnClickListener {
-                val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://www.neonapps.co/contact-us"))
-                startActivity(intent)
+                val action = Intent(Intent.ACTION_VIEW, Uri.parse("https://www.neonapps.co/contact-us"))
+                startActivity(action)
             }
             privacyPolicy.setOnClickListener {
-                val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://www.neonapps.co/"))
-                startActivity(intent)
+                val action = Intent(Intent.ACTION_VIEW, Uri.parse("https://www.neonapps.co/"))
+                startActivity(action)
             }
             help.setOnClickListener {
-                val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://www.neonapps.co/contact-us"))
-                startActivity(intent)
+                val action = Intent(Intent.ACTION_VIEW, Uri.parse("https://www.neonapps.co/contact-us"))
+                startActivity(action)
             }
         }
     }

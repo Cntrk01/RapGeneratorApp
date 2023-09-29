@@ -17,25 +17,16 @@ import com.okation.aivideocreator.databinding.FragmentSelectBeatsBinding
 import com.okation.aivideocreator.ui.beats.adapter.BeatsAdapter
 import com.okation.aivideocreator.ui.beats.viewmodel.SelectBeatsViewModel
 import dagger.hilt.android.AndroidEntryPoint
-
-
 @AndroidEntryPoint
 class SelectBeatsFragment : Fragment() {
     private var _binding: FragmentSelectBeatsBinding? = null
     private val binding get() = _binding!!
-
     private val viewModel: SelectBeatsViewModel by viewModels()
-
-
     private val args: SelectBeatsFragmentArgs by navArgs()
-
-
     private lateinit var adapter: BeatsAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
     }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -55,14 +46,12 @@ class SelectBeatsFragment : Fragment() {
         }
         observeBeats()
     }
-
     private fun initAdapter() {
         adapter = BeatsAdapter(binding.recyclerView)
         binding.recyclerView.adapter = adapter
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
         adapter.onContinue={backingTrack ->
-
             if (backingTrack.url == ""){
                 Toast.makeText(requireContext(),"Choose One Item",Toast.LENGTH_SHORT).show()
             }else{
@@ -78,10 +67,8 @@ class SelectBeatsFragment : Fragment() {
             adapter.mediaPlayer.release()
             val action = SelectBeatsFragmentDirections.actionSelectBeatsFragmentToRapperFragment(its.uuid!!, args.lyricText,args.lyricTitle,its.bpm!!)
             findNavController().navigate(action)
-
         }
     }
-
 
     private fun observeBeats() {
         viewModel.beats.observe(viewLifecycleOwner) { resource ->
@@ -89,12 +76,10 @@ class SelectBeatsFragment : Fragment() {
                 adapter.setBeats(resource.backing_tracks)
             }
         }
-
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding=null
     }
-
 }

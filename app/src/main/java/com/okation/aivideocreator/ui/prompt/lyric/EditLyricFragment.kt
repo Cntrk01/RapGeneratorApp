@@ -14,12 +14,10 @@ import dagger.hilt.android.AndroidEntryPoint
 class EditLyricFragment : Fragment() {
     private var _binding : FragmentEditLyricBinding?=null
     private val binding get() = _binding!!
-
     private val args : EditLyricFragmentArgs by navArgs()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -27,24 +25,20 @@ class EditLyricFragment : Fragment() {
         _binding= FragmentEditLyricBinding.inflate(inflater,container,false)
         return binding.root
     }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        binding.backButton.setOnClickListener {
-            val getText=binding.changeText.text.toString()
-            val action=EditLyricFragmentDirections.actionEditLyricFragmentToFinishLyricFragment(getText,args.title)
-            findNavController().navigate(action)
+        binding.apply {
+            backButton.setOnClickListener {
+                val getText=binding.changeText.text.toString()
+                val action=EditLyricFragmentDirections.actionEditLyricFragmentToFinishLyricFragment(getText,args.title)
+                findNavController().navigate(action)
+            }
+            saveButton.setOnClickListener {
+                val getText=binding.changeText.text.toString()
+                val action=EditLyricFragmentDirections.actionEditLyricFragmentToFinishLyricFragment(getText,args.title)
+                findNavController().navigate(action)
+            }
+            changeText.setText(args.text)
         }
-
-        binding.saveButton.setOnClickListener {
-            val getText=binding.changeText.text.toString()
-            val action=EditLyricFragmentDirections.actionEditLyricFragmentToFinishLyricFragment(getText,args.title)
-            findNavController().navigate(action)
-        }
-
-        binding.changeText.setText(args.text)
     }
-
-
 }

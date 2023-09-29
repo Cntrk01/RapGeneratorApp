@@ -22,20 +22,15 @@ import dagger.hilt.android.AndroidEntryPoint
 class RapperFragment : Fragment() {
     private var _binding : FragmentRapperBinding?=null
     private val binding get() = _binding!!
-
     private val viewModel : RapperViewModel by viewModels()
     private lateinit var adapter: RapperAdapter
     private val args : RapperFragmentArgs by navArgs()
-
     private val image= arrayListOf<Int>()
     var list = ArrayList<String>()
-
     var rapperName=""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
     }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -44,24 +39,17 @@ class RapperFragment : Fragment() {
         initAdapter()
         addImage()
         observeRapper()
-
         return binding.root
     }
-
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         buttonClickItem()
-
     }
-
     private fun buttonClickItem(){
         adapter.onContinue={
             continueButton(it)
             binding.continueButton.setBackgroundResource(R.drawable.premium_bg)
         }
-
         binding.backButton.setOnClickListener {
             val action=RapperFragmentDirections.actionRapperFragmentToSelectBeatsFragment(args.lyricText,args.lyricTitle)
             findNavController().navigate(action)
@@ -87,15 +75,11 @@ class RapperFragment : Fragment() {
              }
         }
     }
-
     private fun initAdapter(){
         adapter= RapperAdapter(binding.recyclerView)
         binding.recyclerView.adapter=adapter
         binding.recyclerView.layoutManager=GridLayoutManager(requireContext(),2)
-
     }
-
-
     private fun observeRapper(){
         viewModel.getVoices()
         //önce viewmodelden repcileri uid ile getirdim.
@@ -118,7 +102,6 @@ class RapperFragment : Fragment() {
             }
         }
     }
-
     private fun addImage(){
         image.add(R.drawable.img_rapper1)
         image.add(R.drawable.img_rapper2)
@@ -129,8 +112,6 @@ class RapperFragment : Fragment() {
         image.add(R.drawable.img_rapper7)
         image.add(R.drawable.img_rapper8)
     }
-
-
     override fun onDestroyView() {
         super.onDestroyView()
         _binding=null

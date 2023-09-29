@@ -29,13 +29,11 @@ class SongViewModel : ViewModel() {
             }
         }
     }
-
-     fun formatDuration(duration: Int): String {
+    fun formatDuration(duration: Int): String {
         val minutes = (duration / 1000) / 60
         val seconds = (duration / 1000) % 60
         return String.format("%02d:%02d", minutes, seconds)
     }
-
     // ViewModel kapatıldığında işlemi iptal et
     override fun onCleared() {
         super.onCleared()

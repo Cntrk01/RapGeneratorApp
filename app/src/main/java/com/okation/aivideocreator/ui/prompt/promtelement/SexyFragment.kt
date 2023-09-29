@@ -12,15 +12,11 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class SexyFragment : Fragment() {
-
     private var _binding : FragmentSexyBinding?=null
     private val binding get() = _binding!!
-
     private val viewModel : PromptViewmodel by activityViewModels()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
     }
 
     override fun onCreateView(
@@ -30,10 +26,8 @@ class SexyFragment : Fragment() {
         _binding= FragmentSexyBinding.inflate(inflater,container,false)
         return binding.root
     }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         binding.apply {
             card1.setOnClickListener {
                 val text=text1.text.toString()

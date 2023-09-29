@@ -14,13 +14,9 @@ import dagger.hilt.android.AndroidEntryPoint
 class OnBoardFragment3 : Fragment() {
     private var _binding : FragmentOnBoard3Binding?=null
     private val binding get() = _binding!!
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
     }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -28,10 +24,8 @@ class OnBoardFragment3 : Fragment() {
         _binding= FragmentOnBoard3Binding.inflate(inflater,container,false)
         return binding.root
     }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         binding.nextButton.setOnClickListener {
             val action =
                 OnBoardFragment3Directions.actionOnBoardFragment3ToOnBoardFragment4()

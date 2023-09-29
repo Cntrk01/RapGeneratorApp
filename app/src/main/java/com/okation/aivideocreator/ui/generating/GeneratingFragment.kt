@@ -18,18 +18,12 @@ import dagger.hilt.android.AndroidEntryPoint
 class GeneratingFragment : Fragment() {
     private var _binding : FragmentGeneratingBinding?=null
     private val binding get() = _binding!!
-
     private val args : GeneratingFragmentArgs by navArgs()
-
     private val viewModel : GeneratingViewModel by viewModels()
-
     private val wordList = mutableListOf<String>()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
     }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -46,7 +40,6 @@ class GeneratingFragment : Fragment() {
         removeSlash()
         observeMethod()
     }
-
     private fun setTextDataFromArgs(){
         with(binding){
             rapperName.text=args.rapperName
@@ -54,7 +47,6 @@ class GeneratingFragment : Fragment() {
             rapperImage.setImageResource(args.rapperPhoto)
         }
     }
-
     private fun removeSlash(){
         val lyricText = args.lyricText.replace("\"", "")
         var currentWord = ""
@@ -73,11 +65,8 @@ class GeneratingFragment : Fragment() {
             wordList.add(currentWord)
         }
     }
-
     private fun observeMethod(){
-
         viewModel.getMusicUrl(TtsRequest(listOf(wordList),args.bpm,args.beatsUid,"zwf","json"))
-
         viewModel.generatedSong.observe(viewLifecycleOwner){
             if (it.mix_url !=""){
                 val action=GeneratingFragmentDirections.actionGeneratingFragmentToSongFragment(it.mix_url,args.lyricTitle,args.rapperName,args.rapperPhoto,0)
@@ -85,7 +74,6 @@ class GeneratingFragment : Fragment() {
             }
         }
     }
-
     override fun onDestroyView() {
         super.onDestroyView()
         _binding=null

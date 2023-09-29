@@ -17,15 +17,11 @@ import dagger.hilt.android.AndroidEntryPoint
 class FinishLyricFragment : Fragment() {
     private var _binding : FragmentFinishLyricBinding?=null
     private val binding get() = _binding!!
-
     private val args : FinishLyricFragmentArgs by navArgs()
-
     private val promptViewmodel : PromptGptViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
     }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -35,37 +31,31 @@ class FinishLyricFragment : Fragment() {
         binding.textTitle.text=args.lyricTitle.replace("\"", "").trim()
         return binding.root
     }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initButton()
         observeData()
     }
-
     private fun initButton(){
         with(binding){
             editLyric.setOnClickListener {
                 val action=FinishLyricFragmentDirections.actionFinishLyricFragmentToEditLyricFragment(args.lyricText,args.lyricTitle)
                 findNavController().navigate(action)
             }
-
             backButton.setOnClickListener {
                 val action=FinishLyricFragmentDirections.actionFinishLyricFragmentToPromptFragment()
                 findNavController().navigate(action)
             }
-
             conBut.setOnClickListener {
                 val action=FinishLyricFragmentDirections.actionFinishLyricFragmentToSelectBeatsFragment(args.lyricText,args.lyricTitle)
                 findNavController().navigate(action)
             }
-
             refresh.setOnClickListener {
                 binding.loadingLinearLayout.visibility=View.VISIBLE
                 promptViewmodel.callApi(args.lyricText)
                 promptViewmodel.callApi(args.lyricTitle)
             }
         }
-
     }
 
     private fun observeData(){

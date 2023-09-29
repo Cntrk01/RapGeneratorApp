@@ -12,9 +12,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class GeneratingViewModel @Inject constructor(private val repo: GeneratingRepository): ViewModel() {
-
     val generatedSong: LiveData<Freestyle> get() = repo.generatedSong
-
     fun getMusicUrl(request: TtsRequest)=viewModelScope.launch {
         repo.setGenerateData(request)
     }

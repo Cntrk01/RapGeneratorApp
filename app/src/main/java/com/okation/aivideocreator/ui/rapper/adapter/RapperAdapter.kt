@@ -3,7 +3,6 @@ package com.okation.aivideocreator.ui.rapper.adapter
 import android.annotation.SuppressLint
 import android.media.MediaPlayer
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
@@ -18,7 +17,7 @@ class RapperAdapter(private val recyclerView: RecyclerView) : RecyclerView.Adapt
 
     var mediaPlayer = MediaPlayer()
 
-    var voiceModel = listOf<VoiceModel>()
+    private var voiceModel = listOf<VoiceModel>()
     private var imageUrl = listOf<Int>()
     private var rapperVoiceList : ArrayList<String>? =null
     var onContinue: ((RapperSetModel) -> Unit)? = null
@@ -31,7 +30,6 @@ class RapperAdapter(private val recyclerView: RecyclerView) : RecyclerView.Adapt
         this.imageUrl=imageString
         notifyDataSetChanged()
     }
-
 //    // Veri listesini güncellemek için bu yöntemi kullanın
     @SuppressLint("NotifyDataSetChanged")
     fun updateData(newData: ArrayList<String>) {
@@ -45,7 +43,6 @@ class RapperAdapter(private val recyclerView: RecyclerView) : RecyclerView.Adapt
         val inf=SelectRapperItemBinding.inflate(LayoutInflater.from(parent.context),parent,false)
         return RapperViewHolder(inf)
     }
-
 
     @SuppressLint("ResourceAsColor")
     override fun onBindViewHolder(holder: RapperViewHolder, position: Int) {
@@ -72,19 +69,14 @@ class RapperAdapter(private val recyclerView: RecyclerView) : RecyclerView.Adapt
                 // Şu anki öğenin görünümünü ayarla
                 playRapSound.isVisible = false
                 stopRapSound.isVisible = true
-
                 val premiumColor = ContextCompat.getColor(holder.itemView.context, R.color.pink)
                 cardView.strokeWidth = 9
                 cardView.strokeColor = premiumColor
-
                 selectedPosition = holder.adapterPosition
-
                 listenMedia(rapperVoice1!!)
-
                 val rapMod=RapperSetModel(rapperVoice1,pos.name,imagePos)
                 onContinue?.invoke(rapMod)
             }
-
             stopRapSound.setOnClickListener {
                 playRapSound.isVisible = true
                 stopRapSound.isVisible = false
@@ -94,10 +86,7 @@ class RapperAdapter(private val recyclerView: RecyclerView) : RecyclerView.Adapt
                 stopMedia()
             }
         }
-
     }
-
-
     fun stopMedia() {
         try {
             //bu if blogunu silince müzik hiç çalmıyor.
@@ -110,7 +99,6 @@ class RapperAdapter(private val recyclerView: RecyclerView) : RecyclerView.Adapt
             println(e.printStackTrace())
         }
     }
-
     private fun listenMedia(clickedItem: String) {
         stopMedia()
         //her tıklandıgı zaman mediaPlayer için yeni nesne olusması gerekiyor
@@ -128,8 +116,6 @@ class RapperAdapter(private val recyclerView: RecyclerView) : RecyclerView.Adapt
             }
         }
     }
-
-
     override fun getItemCount(): Int {
         return voiceModel.size.coerceAtMost(8)
     }

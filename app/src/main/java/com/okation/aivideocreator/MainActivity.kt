@@ -18,7 +18,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         _binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         //status barı beyaz yaptık theme içinden de light kodunnu verdik oldu
         window.statusBarColor = Color.WHITE;
 

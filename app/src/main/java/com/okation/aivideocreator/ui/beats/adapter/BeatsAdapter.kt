@@ -14,35 +14,27 @@ import com.okation.aivideocreator.models.beatsmodel.BackingTrack
 @Suppress("DEPRECATION")
 class BeatsAdapter(private val recyclerView: RecyclerView) : RecyclerView.Adapter<BeatsAdapter.BeatsViewHolder>() {
 
-    var listBeats = listOf<BackingTrack>()
+    private var listBeats = listOf<BackingTrack>()
     var onContinue: ((BackingTrack) -> Unit)? = null
 
     var mediaPlayer = MediaPlayer()
     private var selectedPosition: Int = -1
-
 
     @SuppressLint("NotifyDataSetChanged")
     fun setBeats(beats: List<BackingTrack>) {
         this.listBeats = beats
         notifyDataSetChanged()
     }
-
-
-    inner class BeatsViewHolder(val binding: SelectBeatItemBinding) :
-        RecyclerView.ViewHolder(binding.root) {
+    inner class BeatsViewHolder(val binding: SelectBeatItemBinding) : RecyclerView.ViewHolder(binding.root) {
     }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BeatsViewHolder {
         val inf = SelectBeatItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return BeatsViewHolder(inf)
     }
-
     @SuppressLint("ResourceAsColor", "ResourceType")
     override fun onBindViewHolder(holder: BeatsViewHolder, position: Int) {
         val pos = listBeats[position]
-
         holder.binding.beatsName.text = pos.name
-
         with(holder.binding) {
             playButton.setOnClickListener {
                 if (selectedPosition != -1 && selectedPosition != position) {
@@ -64,9 +56,7 @@ class BeatsAdapter(private val recyclerView: RecyclerView) : RecyclerView.Adapte
                 val premiumColor = ContextCompat.getColor(holder.itemView.context, R.color.pink)
                 cardView.strokeWidth = 5
                 cardView.strokeColor = premiumColor
-
                 selectedPosition = holder.adapterPosition
-
                 listenMedia(clickedItemUrl = pos)
                 pos.url?.let {
                     onContinue?.invoke(pos)
@@ -83,8 +73,7 @@ class BeatsAdapter(private val recyclerView: RecyclerView) : RecyclerView.Adapte
             }
         }
     }
-
-    fun stopMedia() {
+    private fun stopMedia() {
         try {
             if (mediaPlayer.isPlaying) {
                 mediaPlayer.stop()
@@ -95,7 +84,6 @@ class BeatsAdapter(private val recyclerView: RecyclerView) : RecyclerView.Adapte
             e.printStackTrace()
         }
     }
-
     private fun listenMedia(clickedItemUrl: BackingTrack) {
         stopMedia()
         mediaPlayer = MediaPlayer()
@@ -111,11 +99,9 @@ class BeatsAdapter(private val recyclerView: RecyclerView) : RecyclerView.Adapte
             }
         }
     }
-
     override fun getItemCount(): Int {
         return listBeats.size
     }
-
     override fun getItemViewType(position: Int): Int {
         return position
     }

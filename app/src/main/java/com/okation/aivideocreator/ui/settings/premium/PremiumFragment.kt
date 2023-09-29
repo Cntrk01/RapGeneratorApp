@@ -22,7 +22,6 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class PremiumFragment : Fragment() {
-
     private var _binding : FragmentPremiumBinding?=null
     private val binding get() = _binding!!
     private lateinit var revPackage : Package
@@ -30,16 +29,13 @@ class PremiumFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         _binding= FragmentPremiumBinding.inflate(inflater,container,false)
-
         return binding.root
     }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         choosePrice()
@@ -48,25 +44,22 @@ class PremiumFragment : Fragment() {
         buttonClick()
         directionWebSite()
     }
-
     private fun directionWebSite(){
         with(binding){
             termofUs.setOnClickListener {
-                val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://en.wikipedia.org/wiki/Term_of_office"))
-                startActivity(intent)
+                val action = Intent(Intent.ACTION_VIEW, Uri.parse("https://en.wikipedia.org/wiki/Term_of_office"))
+                startActivity(action)
             }
             privacyPolicy.setOnClickListener {
-                val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://www.neonapps.co/"))
-                startActivity(intent)
+                val action = Intent(Intent.ACTION_VIEW, Uri.parse("https://www.neonapps.co/"))
+                startActivity(action)
             }
         }
     }
-
     private fun buttonClick(){
         binding.closeButton.isClickable=true
         setButtonBoolValue(false)
     }
-
     private fun pricesText(){
         Purchases.sharedInstance.getOfferingsWith({
         }) { offerings ->
@@ -126,11 +119,8 @@ class PremiumFragment : Fragment() {
                     }
                 }
             }
-
         }
-
     }
-
     private fun continueButton(){
         val sharedPrefs = requireActivity().getSharedPreferences("my_prefs", Context.MODE_PRIVATE)
 
@@ -159,11 +149,9 @@ class PremiumFragment : Fragment() {
            weekConst.setBackgroundResource(R.color.white)
            weeklytext.setTextColor(blackColor)
            weeklyPrice.setTextColor(blackColor)
-
            monthConst.setBackgroundResource(R.color.white)
            monthText.setTextColor(blackColor)
            monthPrice.setTextColor(blackColor)
-
            yearConst.setBackgroundResource(R.color.white)
            yearText.setTextColor(blackColor)
            yearPrice.setTextColor(blackColor)
@@ -173,9 +161,7 @@ class PremiumFragment : Fragment() {
     private fun setSelectedStyle(view: View) {
         val whiteColor = ContextCompat.getColor(requireContext(), R.color.white)
         view.setBackgroundResource(R.drawable.premium_bg)
-
         setButtonBoolValue(true)
-
         when (view) {
             binding.weekConst -> {
                 binding.weeklytext.setTextColor(whiteColor)
@@ -191,12 +177,10 @@ class PremiumFragment : Fragment() {
             }
         }
     }
-
     private fun setButtonBoolValue(bool:Boolean){
         binding.continueButton.isClickable=bool
         binding.conBut.isClickable=bool
     }
-
     private fun setBgColor(ids: Int) {
         resetColors()
 
@@ -207,5 +191,4 @@ class PremiumFragment : Fragment() {
         }
         binding.conBut.setBackgroundResource(R.drawable.premium_bg)
     }
-
 }

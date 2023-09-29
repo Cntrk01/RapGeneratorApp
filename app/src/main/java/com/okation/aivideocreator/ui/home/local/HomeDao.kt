@@ -3,11 +3,8 @@ package com.okation.aivideocreator.ui.home.local
 import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.okation.aivideocreator.models.homesongmodel.SongModel
-
 @Dao
 interface HomeDao {
-
-
     @Insert(onConflict = OnConflictStrategy.REPLACE) // Eğer aynı kullanıcı adı varsa, üzerine yaz
     suspend fun insertSong(songModel: SongModel)
 
@@ -19,6 +16,4 @@ interface HomeDao {
 
     @Update
     suspend fun updateSong(song: SongModel)
-
-
 }

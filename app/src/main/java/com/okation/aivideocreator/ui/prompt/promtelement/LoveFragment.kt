@@ -14,12 +14,10 @@ import dagger.hilt.android.AndroidEntryPoint
 class LoveFragment : Fragment() {
     private var _binding : FragmentLoveBinding?=null
     private val binding get() = _binding!!
-
     private val viewModel : PromptViewmodel by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
     }
 
     override fun onCreateView(
@@ -32,7 +30,6 @@ class LoveFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         binding.apply {
             card1.setOnClickListener {
                 val text=text1.text.toString()

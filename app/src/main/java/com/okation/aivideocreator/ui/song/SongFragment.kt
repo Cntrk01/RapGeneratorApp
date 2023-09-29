@@ -24,19 +24,14 @@ import java.io.IOException
 class SongFragment : Fragment() {
     private var _binding : FragmentSongBinding?=null
     private val binding get() = _binding!!
-
     private lateinit var mediaPlayer: MediaPlayer
     private var isPlaying = false
     private var playbackPosition = 0
-
     private lateinit var seekBar: SeekBar
     private lateinit var totalTime: TextView
-
     private val args : SongFragmentArgs by navArgs()
-
     private val viewModel: SongViewModel by viewModels()
     private val homeViewModel: HomeViewModel by viewModels()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -59,7 +54,6 @@ class SongFragment : Fragment() {
         buttonClickItem()
         addSongRoom()
     }
-
     private fun addSongRoom(){
         if (args.fragmentValue==0){
             try {
@@ -77,8 +71,6 @@ class SongFragment : Fragment() {
             }
         }
     }
-
-
     private fun startStopMediaButton(){
         binding.pauseSong.setOnClickListener {
             pauseMedia()
@@ -95,7 +87,6 @@ class SongFragment : Fragment() {
             binding.playSong.visibility = View.INVISIBLE
         }
     }
-
     private fun buttonClickItem(){
         with(binding){
             backButton.setOnClickListener {
@@ -103,10 +94,7 @@ class SongFragment : Fragment() {
                 mediaPlayer.release()
                 val action=SongFragmentDirections.actionSongFragmentToHomeFragment()
                 findNavController().navigate(action)
-
-
             }
-
             shareButton.setOnClickListener {
                 val shareIntent = Intent(Intent.ACTION_SEND)
                 shareIntent.type = "text/plain"
@@ -131,13 +119,11 @@ class SongFragment : Fragment() {
             songImage.setImageResource(args.rapperPhoto)
         }
     }
-
     private fun getNavArgsData(){
         binding.songName.text=args.lyricTitle.replace("\"", "").trim()
         binding.songSinger.text=args.rapperName.replace("\"", "").trim()
         startMedia()
     }
-
     private fun startMedia() {
         Log.e("url",args.musicUrl)
         stopMedia()
@@ -147,11 +133,9 @@ class SongFragment : Fragment() {
                 try {
                     setDataSource(args.musicUrl)
                     prepareAsync()
-
                     setOnPreparedListener {
                         it.seekTo(playbackPosition)
                         it.start()
-
                         if (it.isPlaying){
                             this@SongFragment.isPlaying = true
                             playbackPosition = 0
@@ -165,7 +149,6 @@ class SongFragment : Fragment() {
                                 seekBar,
                                 _binding)
                         }
-
                     }
                     setOnCompletionListener {
                         // Müzik tamamlandığında bu metot çağrılır
@@ -177,14 +160,12 @@ class SongFragment : Fragment() {
                         seekBar.progress = 0 // SeekBar'ı sıfırla
                         binding.passTime.text="00.00"
                     }
-
                 } catch (e: Exception) {
                     e.printStackTrace()
                 }
             }
         }
     }
-
     private fun pauseMedia() {
         if (isPlaying) {
             mediaPlayer.pause()
@@ -192,7 +173,6 @@ class SongFragment : Fragment() {
             isPlaying = true
         }
     }
-
     private fun resumeMedia() {
         if (isPlaying) {
             mediaPlayer.seekTo(playbackPosition)
@@ -201,7 +181,6 @@ class SongFragment : Fragment() {
             viewModel.startUpdatingSeekBar(mediaPlayer, seekBar, binding)
         }
     }
-
     private fun stopMedia() {
         try {
             if (mediaPlayer.isPlaying) {
@@ -213,10 +192,8 @@ class SongFragment : Fragment() {
             e.printStackTrace()
         }
     }
-
     override fun onDestroy() {
         super.onDestroy()
         mediaPlayer.release()
     }
-
 }

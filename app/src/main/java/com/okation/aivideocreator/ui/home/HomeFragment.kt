@@ -1,6 +1,5 @@
 package com.okation.aivideocreator.ui.home
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -11,61 +10,42 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.AppCompatButton
-import androidx.constraintlayout.widget.ConstraintSet
 import androidx.fragment.app.viewModels
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.okation.aivideocreator.R
-
-
 import com.okation.aivideocreator.databinding.FragmentHomeBinding
 import com.okation.aivideocreator.models.homesongmodel.SongModel
-//import com.okation.aivideocreator.ui.HomeFragmentDirections
 import com.okation.aivideocreator.ui.home.adapter.HomeAdapter
 import com.okation.aivideocreator.ui.home.viewmodel.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import java.io.IOException
-
-
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
     private var _binding : FragmentHomeBinding?=null
     private val binding get() = _binding!!
-
     private val viewModel : HomeViewModel by viewModels()
-
     private lateinit var adapter : HomeAdapter
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
     }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         _binding= FragmentHomeBinding.inflate(inflater,container,false)
-
         return binding.root
     }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        //bunu sil ve test et çalışıyormu diye
-
         viewModel.getSongs()
         observeData()
         initButton()
-
         initAdapter()
         openBottomSheet()
         actionMediaPlayer()
     }
-
     //eğer veri gelmiyorsa onCreateView() içinde tanımla veriler görünüm oluşmadan gelmesi gerekiyor.
     private fun observeData(){
         viewModel.getSongs().observe(viewLifecycleOwner){songs ->
@@ -80,13 +60,11 @@ class HomeFragment : Fragment() {
             }
         }
     }
-
     private fun initAdapter(){
         adapter= HomeAdapter(binding.recyclerView)
         binding.recyclerView.adapter=adapter
         binding.recyclerView.layoutManager=GridLayoutManager(requireContext(),2)
     }
-
     private fun initButton(){
         with(binding){
             addRap2.setOnClickListener {
@@ -103,24 +81,20 @@ class HomeFragment : Fragment() {
             }
         }
     }
-
     private fun openBottomSheet(){
         adapter.bottomSheetClick={ songModel ->
             bottomSheetItemClick(songModel)
         }
     }
-
     private fun actionMediaPlayer(){
         adapter.setClickLoadData={
             val action=HomeFragmentDirections.actionHomeFragmentToSongFragment(musicUrl = it.songUrl, lyricTitle = it.songName, rapperName = it.rapperName, rapperPhoto = it.songImage,1)
             findNavController().navigate(action)
         }
     }
-
     private fun bottomSheetItemClick(songModel: SongModel){
         val dialog = BottomSheetDialog(requireContext())
         val view = layoutInflater.inflate(R.layout.fragment_bottom_sheet, null)
-
         val renameButton = view.findViewById<AppCompatButton>(R.id.rename)
         val deleteButton = view.findViewById<AppCompatButton>(R.id.delete)
         val shareButton = view.findViewById<AppCompatButton>(R.id.share)
@@ -197,7 +171,6 @@ class HomeFragment : Fragment() {
         dialog.setContentView(view)
         dialog.show()
     }
-
     override fun onDestroyView() {
         super.onDestroyView()
         _binding=null

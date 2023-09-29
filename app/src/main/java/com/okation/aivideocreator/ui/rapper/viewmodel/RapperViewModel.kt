@@ -2,7 +2,6 @@ package com.okation.aivideocreator.ui.rapper.viewmodel
 
 import android.util.Log
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.okation.aivideocreator.models.rapmodel.RapModelItem
@@ -14,11 +13,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class RapperViewModel @Inject constructor(private val repo:RapperRepository) : ViewModel() {
-
-
     val voices: LiveData<List<VoiceModel>> = repo.voices
     val rapperVoice: LiveData<ArrayList<RapModelItem>> = repo.rapperVoice
-
 
     fun getVoices()=viewModelScope.launch{
         try {
@@ -27,7 +23,6 @@ class RapperViewModel @Inject constructor(private val repo:RapperRepository) : V
         }catch (e:java.lang.Exception){
             Log.e("RapperViewModel",e.message.toString())
         }
-
     }
     fun getRapperVoice(voice:String)=viewModelScope.launch{
         try {

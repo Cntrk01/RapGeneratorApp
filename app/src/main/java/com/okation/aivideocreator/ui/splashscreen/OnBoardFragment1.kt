@@ -31,7 +31,6 @@ class OnBoardFragment1 : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         val sharedPrefs = requireContext().getSharedPreferences("my_prefs", Context.MODE_PRIVATE)
         val isPaymentSuccessful = sharedPrefs.getBoolean("is_payment_successful", false)
 
@@ -45,16 +44,12 @@ class OnBoardFragment1 : Fragment() {
             }
         }
 
-
-
         binding.nextButton.setOnClickListener {
             val action = OnBoardFragment1Directions.actionOnBoardFragment1ToOnBoardFragment2()
             findNavController().navigate(action)
 
         }
-
     }
-
     override fun onDestroy() {
         super.onDestroy()
         _binding=null

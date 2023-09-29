@@ -2,24 +2,16 @@ package com.okation.aivideocreator.ui.rapper.repository
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
 import com.okation.aivideocreator.models.rapmodel.RapModelItem
 import com.okation.aivideocreator.models.rappermodel.VoiceModel
 import com.okation.aivideocreator.network.UberDuckApi
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class RapperRepository @Inject constructor(private val api : UberDuckApi) {
-
     private val _voices = MutableLiveData<List<VoiceModel>>()
     val voices: LiveData<List<VoiceModel>> get() = _voices
-
     private val _rapperVoice = MutableLiveData<ArrayList<RapModelItem>>()
     val rapperVoice: LiveData<ArrayList<RapModelItem>> get() = _rapperVoice
-
 
     suspend fun getVoices()  {
         val comeData=api.getVoiceData()

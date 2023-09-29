@@ -19,17 +19,12 @@ class GeneratingLyricFragment : Fragment() {
     private var _binding : FragmentGeneratingLyricBinding?=null
     private val binding get() = _binding!!
     private val args : GeneratingLyricFragmentArgs by navArgs()
-
     private val promptViewmodel : PromptGptViewModel by viewModels()
-
-
-    var message=""
-    var title=""
+    private var message=""
+    private var title=""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
     }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -40,15 +35,16 @@ class GeneratingLyricFragment : Fragment() {
         promptViewmodel.apiMessage.value=null
         return binding.root
     }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.getText.text=args.getTextName
         viewModelProcess()
+        binding.apply {
+            getText.text=args.getTextName
 
-        binding.backButton.setOnClickListener {
-            val action= GeneratingLyricFragmentDirections.actionGeneratingLyricFragmentToPromptFragment()
-            findNavController().navigate(action)
+            backButton.setOnClickListener {
+                val action= GeneratingLyricFragmentDirections.actionGeneratingLyricFragmentToPromptFragment()
+                findNavController().navigate(action)
+            }
         }
         getGptText()
     }
@@ -68,7 +64,6 @@ class GeneratingLyricFragment : Fragment() {
                 }else{
                     title="Music Titleee"
                 }
-
                 checkTitleAndPrompt()
             }
         }

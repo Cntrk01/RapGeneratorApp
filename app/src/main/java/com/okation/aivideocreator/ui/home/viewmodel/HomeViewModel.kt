@@ -1,7 +1,5 @@
 package com.okation.aivideocreator.ui.home.viewmodel
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.okation.aivideocreator.models.homesongmodel.SongModel
@@ -12,10 +10,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(private val repository: HomeRepository) : ViewModel() {
-
-
     fun getSongs()=repository.getSongs()
-
     fun deleteSongId(deleteSong:SongModel) = viewModelScope.launch {
         repository.deleteSongId(deleteSong)
     }
