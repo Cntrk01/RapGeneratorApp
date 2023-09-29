@@ -10,6 +10,7 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.AppCompatButton
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
@@ -25,8 +26,9 @@ import java.io.IOException
 class HomeFragment : Fragment() {
     private var _binding : FragmentHomeBinding?=null
     private val binding get() = _binding!!
-    private val viewModel : HomeViewModel by viewModels()
+    private val viewModel : HomeViewModel by activityViewModels()
     private lateinit var adapter : HomeAdapter
+    private lateinit var bottomSheetFragment: BottomSheetFragment
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -39,6 +41,7 @@ class HomeFragment : Fragment() {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        bottomSheetFragment = BottomSheetFragment()
         viewModel.getSongs()
         observeData()
         initButton()
@@ -84,6 +87,7 @@ class HomeFragment : Fragment() {
     private fun openBottomSheet(){
         adapter.bottomSheetClick={ songModel ->
             bottomSheetItemClick(songModel)
+            onItemSelectedListener?.onItemSelected(songModel)
         }
     }
     private fun actionMediaPlayer(){
@@ -92,85 +96,94 @@ class HomeFragment : Fragment() {
             findNavController().navigate(action)
         }
     }
-    private fun bottomSheetItemClick(songModel: SongModel){
-        val dialog = BottomSheetDialog(requireContext())
-        val view = layoutInflater.inflate(R.layout.fragment_bottom_sheet, null)
-        val renameButton = view.findViewById<AppCompatButton>(R.id.rename)
-        val deleteButton = view.findViewById<AppCompatButton>(R.id.delete)
-        val shareButton = view.findViewById<AppCompatButton>(R.id.share)
-        val cancelButton = view.findViewById<AppCompatButton>(R.id.cancel)
-
-        cancelButton.setOnClickListener {
-            dialog.dismiss()
-        }
-        shareButton.setOnClickListener {
-            val shareIntent = Intent(Intent.ACTION_SEND)
-            shareIntent.type = "text/plain"
-            shareIntent.putExtra(Intent.EXTRA_SUBJECT, songModel.songName)
-            shareIntent.putExtra(Intent.EXTRA_TEXT, songModel.songUrl)
-            startActivity(Intent.createChooser(shareIntent, songModel.songName))
-        }
-        deleteButton.setOnClickListener {
-            val builder = AlertDialog.Builder(requireContext())
-            builder.setTitle("DELETE MUSIC")
-            builder.setMessage("ARE YOU SURE DELETE THIS MUSIC ?")
-
-            builder.setPositiveButton("YES") { dialog, _ ->
-                try {
-                    viewModel.deleteSongId(songModel)
-                    Toast.makeText(requireContext(), "DELETED ITEM", Toast.LENGTH_SHORT).show()
-                }catch (e:IOException){
-                    println(e.printStackTrace())
-                }catch (e:java.lang.Exception){
-                    println(e.printStackTrace())
-                }
-                dialog.dismiss()
-            }
-
-            builder.setNegativeButton("NO") { dialog, _ ->
-                dialog.cancel()
-            }
-            val alertDialog = builder.create()
-            alertDialog.show()
-        }
-        renameButton.setOnClickListener {
-            val builder = AlertDialog.Builder(requireContext())
-            builder.setTitle("Title")
-            val input = EditText(requireContext())
-            input.hint = "Change Song Name..."
-            builder.setView(input)
-
-            builder.setPositiveButton("OKEY") { dialog, _ ->
-                try {
-                    val userInput = input.text.toString()
-                    viewModel.updateSong(
-                        SongModel(
-                            id = songModel.id,
-                            songUrl = songModel.songUrl,
-                            songImage = songModel.songImage,
-                            songName = songModel.rapperName,
-                            rapperName = userInput
-                        )
-                    )
-                    Toast.makeText(requireContext(), "SUCCES UPDATE", Toast.LENGTH_SHORT).show()
-                } catch (e: IOException) {
-                    println(e.printStackTrace())
-                } catch (e:java.lang.Exception){
-                    println(e.printStackTrace())
-                }
-                dialog.dismiss()
-            }
-            builder.setNegativeButton("CANCEL"){dialog, _ ->
-                Toast.makeText(requireContext(), "UPDATE CANCELED", Toast.LENGTH_SHORT).show()
-                dialog.cancel()
-            }
-            val alertDialog = builder.create()
-            alertDialog.show()
-        }
-        dialog.setCancelable(false)
-        dialog.setContentView(view)
-        dialog.show()
+    private var onItemSelectedListener: OnItemSelectedListener? = null
+    interface OnItemSelectedListener {
+        fun onItemSelected(songModel: SongModel)
     }
+    fun setOnItemSelectedListener(listener: OnItemSelectedListener) {
+        this.onItemSelectedListener = listener
+    }
+    private fun bottomSheetItemClick(songModel: SongModel){
+        bottomSheetFragment.show(childFragmentManager, bottomSheetFragment.tag)
+//        val dialog = BottomSheetDialog(requireContext())
+//        val view = layoutInflater.inflate(R.layout.fragment_bottom_sheet, null)
+//        val renameButton = view.findViewById<AppCompatButton>(R.id.rename)
+//        val deleteButton = view.findViewById<AppCompatButton>(R.id.delete)
+//        val shareButton = view.findViewById<AppCompatButton>(R.id.share)
+//        val cancelButton = view.findViewById<AppCompatButton>(R.id.cancel)
+//
+//        cancelButton.setOnClickListener {
+//            dialog.dismiss()
+//        }
+//        shareButton.setOnClickListener {
+//            val shareIntent = Intent(Intent.ACTION_SEND)
+//            shareIntent.type = "text/plain"
+//            shareIntent.putExtra(Intent.EXTRA_SUBJECT, songModel.songName)
+//            shareIntent.putExtra(Intent.EXTRA_TEXT, songModel.songUrl)
+//            startActivity(Intent.createChooser(shareIntent, songModel.songName))
+//        }
+//        deleteButton.setOnClickListener {
+//            val builder = AlertDialog.Builder(requireContext())
+//            builder.setTitle("DELETE MUSIC")
+//            builder.setMessage("ARE YOU SURE DELETE THIS MUSIC ?")
+//
+//            builder.setPositiveButton("YES") { dialog, _ ->
+//                try {
+//                    viewModel.deleteSongId(songModel)
+//                    Toast.makeText(requireContext(), "DELETED ITEM", Toast.LENGTH_SHORT).show()
+//                }catch (e:IOException){
+//                    println(e.printStackTrace())
+//                }catch (e:java.lang.Exception){
+//                    println(e.printStackTrace())
+//                }
+//                dialog.dismiss()
+//            }
+//
+//            builder.setNegativeButton("NO") { dialog, _ ->
+//                dialog.cancel()
+//            }
+//            val alertDialog = builder.create()
+//            alertDialog.show()
+//        }
+//        renameButton.setOnClickListener {
+//            val builder = AlertDialog.Builder(requireContext())
+//            builder.setTitle("Title")
+//            val input = EditText(requireContext())
+//            input.hint = "Change Song Name..."
+//            builder.setView(input)
+//
+//            builder.setPositiveButton("OKEY") { dialog, _ ->
+//                try {
+//                    val userInput = input.text.toString()
+//                    viewModel.updateSong(
+//                        SongModel(
+//                            id = songModel.id,
+//                            songUrl = songModel.songUrl,
+//                            songImage = songModel.songImage,
+//                            songName = songModel.rapperName,
+//                            rapperName = userInput
+//                        )
+//                    )
+//                    Toast.makeText(requireContext(), "SUCCES UPDATE", Toast.LENGTH_SHORT).show()
+//                } catch (e: IOException) {
+//                    println(e.printStackTrace())
+//                } catch (e:java.lang.Exception){
+//                    println(e.printStackTrace())
+//                }
+//                dialog.dismiss()
+//            }
+//            builder.setNegativeButton("CANCEL"){dialog, _ ->
+//                Toast.makeText(requireContext(), "UPDATE CANCELED", Toast.LENGTH_SHORT).show()
+//                dialog.cancel()
+//            }
+//            val alertDialog = builder.create()
+//            alertDialog.show()
+//        }
+//        dialog.setCancelable(false)
+//        dialog.setContentView(view)
+//        dialog.show()
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding=null
